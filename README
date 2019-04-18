@@ -1,0 +1,17 @@
+=======================================
+-------------- Appending --------------
+=======================================
+To append text after current line:
+a
+To finish appending:
+.
+
+
+=======================================
+--- Insert text before current line ---
+=======================================
+To insert line before current line:
+i
+To finish inserting:
+.
+
