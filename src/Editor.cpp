@@ -1,15 +1,21 @@
 #include "Editor.h"
 using namespace std;
 
+
+
 Editor::Editor() {
     this->doc = Document{};
 }
 
 void Editor::loop() {
+    string str;
     while(1) {
-        string str;
-        cin >> str;
-        cout << str << endl;
+        getline(cin, str);
+        
+        if(str == "") 
+            continue;
+        cout << "INPUT: " << str << endl;
+
         if(str == "p") {
             doc.print();
         } else if(str == "n") {
@@ -23,11 +29,12 @@ void Editor::loop() {
         } else if(str == "c") {
             doc.change();
         } else if(str == "d") {
-            doc.delete();
+            doc.deleteCur();
         } else if(str == "/text") {
             //Search text
         } else if(str == "Q") {
             //Quit
+            doc.quit();
         } else if(str[0] == 's') {
             //s/old/new
         } else {
@@ -35,9 +42,12 @@ void Editor::loop() {
             //Try parsing str to int
             try {
                 int num = std::stoi( str );
+                cout << "ASD" << endl;
             } catch(std::invalid_argument) {
                 cout << "?" << endl;
             }
         }
+        str = "";
     }
+    
 }
