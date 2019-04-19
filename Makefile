@@ -1,23 +1,30 @@
 CXX = g++ 
 CXXFLAGS = -std=c++11
 
+FILES = Editor Document main
+
+SRC_DIR = src
+INCLUDE_DIR = include
+BUILD_DIR = build
+
+SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
+
 all: clean build link run
 	
 
-build: Editor.o Document.o main.o
+build: $(OBJECTS)
 
 run: a.out
 	./a.out
 
 clean:
-	rm *.o -f
+	rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.out -f
 
-link: Editor.o Document.o main.o
-	$(CXX) $^ -o a.out
+#Link
+link: $(OBJECTS)
+	$(CXX) $(LDFLAGS) $^ -o bin/main.out
 
-Editor.o:
-	$(CXX) $(CXXFLAGS) -c Editor.cpp
-Document.o:
-	$(CXX) $(CXXFLAGS) -c Document.cpp
-main.o:
-	$(CXX) $(CXXFLAGS) -c main.cpp
+#Compile
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) $(DBGFLAG) -I$(INCLUDE_DIR)/ -c $< -o $@
