@@ -1,0 +1,39 @@
+Log of Main Test
+
+Current working line: 17
+
+Current correct output:
+
+you were
+7	you were
+I have eaten
+2	I have eaten
+and the peaches
+
+Problem: At line 18
+My output:
+5       that were in
+ed output:
+8       you were
+
+Problem Analysis:
+Appending after appending - problem with current line
+
+
+
+
+
+Without ed:
+
+Max line: 24
+My output correct:
+
+you were
+7	you were
+I have eaten
+2	I have eaten
+and the peaches
+5	that were in
+you were
+you were
+9	you were

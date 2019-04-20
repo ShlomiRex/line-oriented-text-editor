@@ -44,9 +44,7 @@ void Document::append() {
         }
         lines.insert(lines.begin() + line_num, str);
         line_num ++;
-        if(line_num > max_line_num) {
-            max_line_num = line_num;
-        }
+        max_line_num++;
     }
 }
 
@@ -72,6 +70,12 @@ void Document::change() {
         string str;
         getline(cin, str);
         lines.at(line_num - 1) = str;
+
+        //get '.'
+        getline(cin, str);
+        if(str != ".") {
+            cout << "You must end 'c' command with '.'" << endl;
+        }
     } else {
         cout << "?" << endl;
     }
@@ -107,7 +111,7 @@ void Document::search(string str) {
         } else {
             line_num = tmp_cur_line;
             cout << *it << endl;
-            break;
+            return;
         }
     }
 
@@ -121,7 +125,7 @@ void Document::search(string str) {
         } else {
             line_num = tmp_cur_line;
             cout << *it << endl;
-            break;
+            return;
         }
     }
 
@@ -129,10 +133,38 @@ void Document::search(string str) {
 }
 
 void Document::changeLine(int num) {
-    if(num > 0 && num < max_line_num) {
+    //cout << "Changing line from " << line_num << " to " << num << " max line = " << max_line_num << endl;
+    if(num > 0 && num <= max_line_num) {
         line_num = num;
         print();
     }
     else
         cout << "?" << endl;
+}
+
+void Document::replace(string old, string _new) {
+    string current_line = lines.at(line_num - 1);
+    size_t index_old = current_line.find(old);
+    if(index_old != string::npos) {
+        size_t line_size = current_line.size();
+        size_t old_size = old.size();
+        size_t new_size = _new.size();
+
+        string line_before_old = current_line.substr(0, index_old);
+        string line_after_old = current_line.substr(index_old + old_size);
+        
+        string new_current_line = line_before_old + _new + line_after_old;
+        lines[line_num - 1] = new_current_line;
+
+        /*
+        cout << "OLD=" << old << endl;
+        cout << "NEW=" << _new << endl;
+        cout << "OLD INDEX=" << index_old << endl;
+        cout << "LINE BEFORE OLD=" << line_before_old << endl;
+        cout << "LINE AFTER OLD=" << line_after_old << endl;
+        */
+    } else {
+        //Old string not found
+        //What to do?..
+    }
 }
