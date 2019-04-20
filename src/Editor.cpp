@@ -30,8 +30,6 @@ void Editor::loop() {
             doc.change();
         } else if(str == "d") {
             doc.deleteCur();
-        } else if(str == "/text") {
-            //Search text
         } else if(str == "Q") {
             //Quit
             doc.quit();
@@ -45,7 +43,19 @@ void Editor::loop() {
                 int num = std::stoi( str );
                 doc.changeLine(num);
             } catch(std::invalid_argument) {
-                cout << "?" << endl;
+                //Check '/'
+
+                if(str.size() > 0) {
+                    if(str.at(0) == '/') {
+                        string text_to_search = str.substr(1);
+                        
+                        doc.search(text_to_search);
+                    } else {
+                        cout << "?" << endl;
+                    }
+                } else {
+                    cout << "?" << endl;
+                }
             }
         }
         str = "";

@@ -50,7 +50,7 @@ mytest:
 	#Run
 	./$(BUILD_TEST_DIR)/test.out
 
-run_tests: clean build link test1 test2 test3 test4 test_main
+run_tests: clean build link test1 test2 test3 test4 test5 test_main
 
 test%:
 	@echo Running $@...

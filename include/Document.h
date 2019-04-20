@@ -24,6 +24,7 @@ public:
     void change(); //Change current line 
     void quit(); //Quit program
     void deleteCur(); //Delete current line
+    void search(string str); //Searches string
 
     void changeLine(int num); //Changed current line to a given line
 };

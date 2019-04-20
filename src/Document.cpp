@@ -95,6 +95,39 @@ void Document::deleteCur() {
     }
 }
 
+void Document::search(string str) {
+    size_t tmp_cur_line = line_num;
+
+    //Search from current line to end
+    for(auto it = lines.begin() + line_num - 1; it != lines.end(); ++it, ++tmp_cur_line) {
+        size_t res = it->find(str);
+        if(res == string::npos) {
+            //Not found
+            continue;
+        } else {
+            line_num = tmp_cur_line;
+            cout << *it << endl;
+            break;
+        }
+    }
+
+    tmp_cur_line = 1;
+    //Search from start to current line
+    for(auto it = lines.begin(); it != lines.begin() + line_num - 1; ++it, ++tmp_cur_line) {
+        size_t res = it->find(str);
+        if(res == string::npos) {
+            //Not found
+            continue;
+        } else {
+            line_num = tmp_cur_line;
+            cout << *it << endl;
+            break;
+        }
+    }
+
+
+}
+
 void Document::changeLine(int num) {
     if(num > 0 && num < max_line_num) {
         line_num = num;
