@@ -1,3 +1,5 @@
+/* Shlomi Domnenko 318643640 */
+
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 #include <vector>

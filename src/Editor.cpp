@@ -1,3 +1,5 @@
+/* Shlomi Domnenko 318643640 */
+
 #include "Editor.h"
 using namespace std;
 

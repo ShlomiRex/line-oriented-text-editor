@@ -13,6 +13,7 @@ BUILD_TEST_DIR = ${BUILD_DIR}/test
 TEST_DIR = test
 
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 
 all: clean build link run
@@ -50,11 +51,13 @@ mytest:
 	#Run
 	./$(BUILD_TEST_DIR)/test.out
 
-run_tests: clean build link test1 test2 test3 test4 test5 test_main
+run_tests: clean build link test1 test2 test3 test4 test_main
 
 test%:
 	@echo Running $@...
 	./$(BUILD_DIR)/a.out < $(TEST_DIR)/$@_input.txt > tmp.txt
 	diff $(TEST_DIR)/$@_output.txt tmp.txt
-	@echo "Finished running $@\n\n"
+	@echo Success\n
 
+prepare_files_for_submission:
+	zip 318643640.zip src/Document.cpp src/Editor.cpp $(HEADERS) 
