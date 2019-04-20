@@ -14,7 +14,7 @@ void Editor::loop() {
         
         if(str == "") 
             continue;
-        cout << "INPUT: " << str << endl;
+        //cout << "INPUT: " << str << endl;
 
         if(str == "p") {
             doc.print();
@@ -35,6 +35,7 @@ void Editor::loop() {
         } else if(str == "Q") {
             //Quit
             doc.quit();
+            return; //Exit gracefully
         } else if(str[0] == 's') {
             //s/old/new
         } else {

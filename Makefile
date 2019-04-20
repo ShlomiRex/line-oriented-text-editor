@@ -9,6 +9,8 @@ FILES = Editor Document main
 SRC_DIR = src
 INCLUDE_DIR = include
 BUILD_DIR = build
+BUILD_TEST_DIR = ${BUILD_DIR}/test
+TEST_DIR = test
 
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
@@ -17,11 +19,14 @@ all: clean build link run
 
 build: $(OBJECTS)
 
+#Run main program
 run: $(BUILD_DIR)/a.out
 	./$(BUILD_DIR)/a.out
 
+#Clean build objects
 clean:
 	find ${BUILD_DIR} \( -name "*.o" -o -name "*.out" \) -type f -delete -print
+	rm tmp.txt -f
 #Does not remove files recursivly, only dirs
 #So we use 'find' instead
 #rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.out -f
@@ -36,12 +41,25 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) $(DBGFLAG) -I$(INCLUDE_DIR)/ -c $< -o $@
 
 
-run_tests: test1
+#Test program 'test.cpp'. NOT main tests.
+test:
+	#Compile
+	$(CXX) $(CXXFLAGS) $(DBGFLAG) -c $(SRC_DIR)/test/test.cpp -o $(BUILD_TEST_DIR)/test.o 
+	#Link
+	$(CXX) $(LDFLAGS) $(BUILD_TEST_DIR)/test.o -o $(BUILD_TEST_DIR)/test.out
+	#Run
+	./$(BUILD_TEST_DIR)/test.out
+
+run_tests: test1 test2
 
 test1: clean build link
-	#Compile
-	$(CXX) $(CXXFLAGS) $(DBGFLAG) -c $(SRC_DIR)/test/test.cpp -o $(BUILD_DIR)/test/test.o 
-	#Link
-	$(CXX) $(LDFLAGS) $(BUILD_DIR)/test/test.o -o $(BUILD_DIR)/test/test.out
-	#Run
-	./$(BUILD_DIR)/test/test.out
+	@echo Running test number 1...
+	./$(BUILD_DIR)/a.out < $(TEST_DIR)/test1_input.txt > tmp.txt
+	diff $(TEST_DIR)/test1_output.txt tmp.txt
+	@echo "Finished running test 1\n\n"
+
+test2: clean build link
+	@echo "Running test number 2..."
+	./$(BUILD_DIR)/a.out < $(TEST_DIR)/test2_input.txt > tmp.txt
+	diff $(TEST_DIR)/test2_output.txt tmp.txt
+	@echo "Finished running test 2\n\n"

@@ -7,7 +7,7 @@ Document::Document() : lines{}  {
 
 void Document::prefixPrint(string prefix) {
     if(line_num > 0) {
-        cout << prefix << *(lines.begin() + line_num) << endl;
+        cout << prefix << *(lines.begin() + line_num - 1) << endl;
     } else {
         cout << "?" << endl;
     }
@@ -28,7 +28,9 @@ void Document::tabPrint() {
 
 //Prints all lines
 void Document::printAll() {
-
+    for(auto it = lines.begin(); it != lines.end(); ++it) {
+        cout << *it << endl;
+    }
 }
 
 //Append text to document
