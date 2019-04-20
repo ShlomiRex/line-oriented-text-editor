@@ -52,20 +52,54 @@ void Document::append() {
 
 //Insert text before document
 void Document::insert() {
-
+    line_num--;
+    string str;
+    //Wait untill get '.' to finish appending
+    while(1) {
+        getline(cin, str);
+        if(str == "." ) {
+            break;
+        }
+        lines.insert(lines.begin() + line_num, str);
+        line_num ++;
+        max_line_num++;        
+    }
 }
 
 //Change current line 
 void Document::change() {
-
+    if(line_num > 0) {
+        string str;
+        getline(cin, str);
+        lines.at(line_num - 1) = str;
+    } else {
+        cout << "?" << endl;
+    }
 }
 
 //Quit program
 void Document::quit() {
-
+    //Memory cleanup
+    
+    //Nothing to clean
 }
 
 //Delete current line
 void Document::deleteCur() {
+    if(line_num > 0) {
+        lines.erase(lines.begin() + line_num - 1);
+        line_num--;
+        max_line_num--;
+    } else {
+        cout << "?" << endl;
+    }
+}
 
+void Document::changeLine(int num) {
+    if(num > 0 && num < max_line_num) {
+        line_num = num;
+        print();
+    }
+    else
+        cout << "?" << endl;
 }

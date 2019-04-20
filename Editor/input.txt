@@ -42,4 +42,3 @@ and so cold
 s/strawberries/plums/
 %p
 Q
-

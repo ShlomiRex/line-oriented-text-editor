@@ -25,8 +25,8 @@ run: $(BUILD_DIR)/a.out
 
 #Clean build objects
 clean:
-	find ${BUILD_DIR} \( -name "*.o" -o -name "*.out" \) -type f -delete -print
-	rm tmp.txt -f
+	@find ${BUILD_DIR} \( -name "*.o" -o -name "*.out" \) -type f -delete
+	@rm tmp.txt -f
 #Does not remove files recursivly, only dirs
 #So we use 'find' instead
 #rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.out -f
@@ -50,7 +50,7 @@ mytest:
 	#Run
 	./$(BUILD_TEST_DIR)/test.out
 
-run_tests: test1 test2
+run_tests: clean build link test1 test2 test3 test4 test_main
 
 test%:
 	@echo Running $@...

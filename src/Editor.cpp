@@ -43,7 +43,7 @@ void Editor::loop() {
             //Try parsing str to int
             try {
                 int num = std::stoi( str );
-                cout << "ASD" << endl;
+                doc.changeLine(num);
             } catch(std::invalid_argument) {
                 cout << "?" << endl;
             }
