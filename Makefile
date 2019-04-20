@@ -60,4 +60,5 @@ test%:
 	@echo Success\n
 
 prepare_files_for_submission:
-	zip 318643640.zip src/Document.cpp src/Editor.cpp $(HEADERS) 
+	rm -f 318643640.zip
+	zip 318643640.zip src/Document.cpp src/Editor.cpp $(HEADERS) -j

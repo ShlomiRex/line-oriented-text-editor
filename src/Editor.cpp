@@ -42,7 +42,7 @@ void Editor::loop() {
             try {
                 int num = std::stoi( str );
                 doc.changeLine(num);
-            } catch(std::invalid_argument) {
+            } catch(...) {
                 //Check '/'
 
                 if(str.size() > 0) {
