@@ -25,7 +25,7 @@ Appending after appending - problem with current line
 
 Without ed:
 
-Max line: 24
+Max line: 42
 My output correct:
 
 you were
@@ -37,3 +37,7 @@ and the peaches
 you were
 you were
 9	you were
+and the peaches
+you were probably
+8	you were probably
+the strawberries
