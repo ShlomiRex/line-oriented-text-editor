@@ -42,7 +42,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 
 #Test program 'test.cpp'. NOT main tests.
-test:
+mytest:
 	#Compile
 	$(CXX) $(CXXFLAGS) $(DBGFLAG) -c $(SRC_DIR)/test/test.cpp -o $(BUILD_TEST_DIR)/test.o 
 	#Link
@@ -52,14 +52,9 @@ test:
 
 run_tests: test1 test2
 
-test1: clean build link
-	@echo Running test number 1...
-	./$(BUILD_DIR)/a.out < $(TEST_DIR)/test1_input.txt > tmp.txt
-	diff $(TEST_DIR)/test1_output.txt tmp.txt
-	@echo "Finished running test 1\n\n"
+test%:
+	@echo Running $@...
+	./$(BUILD_DIR)/a.out < $(TEST_DIR)/$@_input.txt > tmp.txt
+	diff $(TEST_DIR)/$@_output.txt tmp.txt
+	@echo "Finished running $@\n\n"
 
-test2: clean build link
-	@echo "Running test number 2..."
-	./$(BUILD_DIR)/a.out < $(TEST_DIR)/test2_input.txt > tmp.txt
-	diff $(TEST_DIR)/test2_output.txt tmp.txt
-	@echo "Finished running test 2\n\n"
