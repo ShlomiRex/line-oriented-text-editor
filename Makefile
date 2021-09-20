@@ -27,7 +27,7 @@ run: $(BUILD_DIR)/a.out
 #Clean build objects
 clean:
 	@find ${BUILD_DIR} \( -name "*.o" -o -name "*.out" \) -type f -delete
-	@rm tmp.txt -f
+	@rm -f tmp.txt
 #Does not remove files recursivly, only dirs
 #So we use 'find' instead
 #rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.out -f
