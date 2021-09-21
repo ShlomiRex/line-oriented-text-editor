@@ -16,7 +16,10 @@ SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 
-all: clean build link run
+all: prepare_folders clean build link run
+
+prepare_folders:
+	mkdir -p build
 
 build: $(OBJECTS)
 
