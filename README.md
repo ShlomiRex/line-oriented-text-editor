@@ -2,23 +2,6 @@
 
 This is a command-line based text editor. Just like 'vi'.
 
-# How to run / test
-
-To run an example:
-
-`$ ./build/a.out < test/test_main_input.txt `
-
-To run interactivly:
-
-`$ make `
-
-Or just run `a.out`.
-
-To run tests:
-
-`$ make run_tests `
-
-
 # Commands
 
 | Command   | Descriptions                                                                                                                                                     |
@@ -35,3 +18,22 @@ To run tests:
 | s/old/new | replaces old string with new in current line (google: C++ split or token)                                                                                        |
 | Q         | quites the editor without saving                                                                                                                                 |
 
+# How to create basic file
+
+![](README/basic.gif)
+
+# How to run / test
+
+To run an example:
+
+`$ ./build/a.out < test/test_main_input.txt `
+
+To run interactivly:
+
+`$ make `
+
+Or just run `a.out`.
+
+To run tests:
+
+`$ make run_tests `
